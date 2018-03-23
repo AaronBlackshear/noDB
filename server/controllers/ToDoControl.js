@@ -5,7 +5,6 @@ var todoList = [ ];
 
 module.exports = {
     //this exports this stuff to the index.js 
-    //fron todocontrol to the server/index and then to the front end
-    
-    
+    //from todocontrol to the server/index and then to the front end
+
 }
