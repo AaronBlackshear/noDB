@@ -1,12 +1,31 @@
-// this is the title ( functional component)
+// // this is the title ( functional component)
+// import React, { Component } from 'react';
 
 
-<div></div>
+// class Header extends Component {
+//   constructor(props){
+//     super(props);
+
+//     this.state = {
+//         inputMorning: '',
+//         inputNight: '',
+//         inputAnytime: ''
+
+//     }
+//   }
 
 
+  
+//   render() {
+//     console.log(this.state)
+//     return (
+//       <div> 
 
-
-
-
+      
+//       </div>
+//     );
+//   }
+// }
 
 // export default Header;
+

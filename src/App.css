@@ -1,3 +1,72 @@
+*{
+  font-family: "SF Pro Text";
+  font-weight: 600;
+}
+
+.todoItem {
+  background-color:purple;
+  color: aquamarine
+}
+
+.column {
+  display:inline-block;
+  width:33%;
+  height:70vh;
+  background-color: aquamarine;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .App {
   text-align: center;
 }
@@ -26,3 +95,5 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+

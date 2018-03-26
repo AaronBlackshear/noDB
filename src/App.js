@@ -1,71 +1,204 @@
 //Import your components!
-import React, { Component } from 'react';
-import './App.css';
-import List from './Components/List';
-import Header from './Components/Header';
+import React, {Component} from 'react';
 import axios from 'axios';
-//The main functionality with reamin here. Passes ?data? to the other components
+import './App.css';
+import Morning from './Components/Morning';
+import Night from './Components/Night';
+import Anytime from './Components/Anytime';
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
-    
+
     this.state = {
-      morning: "",
+      morning: [],
       night: [],
       anytime: [],
       lists: []
     }
-//Under the ( initialized state ) , inside the ( constructor ) make sure to bind your (   ) 
-// this.newItem = this.newItem.bind(this);
-// this.editItem = this.editItem.bind(this);
-// this.deleteItem = this.deleteItem.bind(this);
+  // Under the ( initialized state ) , inside the ( constructor ) make sure to
+  // bind your (   )
+    this.updateMorning = this
+      .updateMorning
+      .bind(this)
+    this.updateNight = this
+      .updateNight
+      .bind(this)
+    this.updateAnytime = this
+      .updateAnytime
+      .bind(this)
+    this.deleteMorningItem = this
+      .deleteMorningItem
+      .bind(this)
 
   }
   componentDidMount() {
-    axios.get(`/api/getLists`).then(res => {
-      console.log(res)
-      res.data.map(e => {
-        if(e.list === "Morning"){
-          this.setState({
-            morning: e.text
-          })}
-          if(e.list === "Night"){
-            this.setState({
-              night: e.text
-            })}
-            if(e.list === "Anytime"){
-              this.setState({
-                anytime: e.text
-              })
-            } 
-      })
+    // console.log("mount")
+    axios
+      .get(`/api/getLists`)
+      .then(res => {
+        // console.log("response", res)
+        let newMorning = this.state.morning;
+        let newNight = this.state.night;
+        let newAnytime = this.state.anytime;
+        res.data
+          .map(e => {
 
-      this.setState({
-        lists : res.data
-      });
+            if (e.list === "Morning") {
+              newMorning.push(e);
+            }
+            if (e.list === "Night") {
+              newNight.push(e);
+            }
+            if (e.list === "Anytime") {
+              newAnytime.push(e);
+            }
+          })
+
+        this.setState({lists: res.data, morning: newMorning, night: newNight, anytime: newAnytime});
+      })
+      .catch(console.log)
+  }
+  // Ask our server for the todos array filter morning todos - var morn=
+  // \todos.filter(e => e.list === "Morning") filter night todos filter anytime
+  // todos setState({ morning: morn, night: night, anytime: any}) complete?
+
+  updateMorning(value) {
+    axios.post('/api/newItem', { text: value , list: "Morning"}).then(res => {
+      let newMorning = this.state.morning;
+      this.setState({morning: [...newMorning, res.data]})
     })
-    .catch(console.log)
-    // Ask our server for the todos array
-    // filter morning todos - var morn= \todos.filter(e => e.list === "Morning")
-    // filter night todos
-    // filter anytime todos
-    // setState({ morning: morn, night: night, anytime: any})
-    //complete?
+// .catch(console.log)
+  }
+
+  updateNight(value) {
+    axios.post('/api/newItem', { text: value , list: "Night"}).then(res => {
+      let newNight = this.state.night;
+      this.setState({night: [...newNight, res.data]})
+    })
+// .catch(console.log)
+  }
+
+  updateAnytime(value) {
+    axios.post('/api/newItem', { text: value , list: "Anytime"}).then(res => {
+      let newAnytime = this.state.anytime;
+      this.setState({anytime: [...newAnytime, res.data]})
+    })
+// .catch(console.log)
   }
 
 
 
 
+
+
+
+  
+  deleteMorningItem(id) {
+    // console.log(id)
+    axios.delete(`/api/deleteItem/${id}`)
+      .then(res => {
+        console.log("response", res)
+        console.log(this.state, "this.state")
+
+        let newMorning = [];
+        let newNight = [];
+        let newAnytime = [];
+        
+        res.data.map(e => {
+
+            if (e.list === "Morning") {
+              newMorning.push(e);
+            }
+            if (e.list === "Night") {
+              newNight.push(e);
+            }
+            if (e.list === "Anytime") {
+              newAnytime.push(e);
+            }
+          })
+
+        this.setState({lists: res.data, morning: newMorning, night: newNight, anytime: newAnytime});
+      })
+  }
+
+
+  // deleteNightItem(id) {
+  //   // console.log(id)
+  //   axios.delete(`/api/deleteItem/${id}`)
+  //     .then(res => {
+  //       console.log("response", res)
+  //       console.log(this.state, "this.state")
+
+  //       let newMorning = [];
+  //       let newNight = [];
+  //       let newAnytime = [];
+        
+  //       res.data.map(e => {
+
+  //           if (e.list === "Morning") {
+  //             newMorning.push(e);
+  //           }
+  //           if (e.list === "Night") {
+  //             newNight.push(e);
+  //           }
+  //           if (e.list === "Anytime") {
+  //             newAnytime.push(e);
+  //           }
+  //         })
+
+  //       this.setState({lists: res.data, morning: newMorning, night: newNight, anytime: newAnytime});
+  //     })
+  // }
+
+
+
+  // deleteAnytimeItem(id) {
+  //   // console.log(id)
+  //   axios.delete(`/api/deleteItem/${id}`)
+  //     .then(res => {
+  //       console.log("response", res)
+  //       console.log(this.state, "this.state")
+
+  //       let newMorning = [];
+  //       let newNight = [];
+  //       let newAnytime = [];
+        
+  //       res.data.map(e => {
+
+  //           if (e.list === "Morning") {
+  //             newMorning.push(e);
+  //           }
+  //           if (e.list === "Night") {
+  //             newNight.push(e);
+  //           }
+  //           if (e.list === "Anytime") {
+  //             newAnytime.push(e);
+  //           }
+  //         })
+
+  //       this.setState({lists: res.data, morning: newMorning, night: newNight, anytime: newAnytime});
+  //     })
+  // }
+
   render() {
-    // console.log(this.state);
-    
+// console.log(this.state);
+
     return (
       <div className="App">
-
-      <List title="Morning" todos= {this.state.morning}/>
-      <List title="Night" todos= {this.state.night}/>
-      <List title="Anytime" todos= {this.state.anytime}/>
+        <Morning
+          title="Morning"
+          morningtodos={this.state.morning}
+          updateMorning={this.updateMorning}
+          deleteMorningItem={this.deleteMorningItem}/>
+        <Night
+          title="Night"
+          nighttodos={this.state.night}
+          updateNight={this.updateNight}/>
+        <Anytime
+          title="Anytime"
+          anytimetodos={this.state.anytime}
+          updateAnytime={this.updateAnytime}/>
       </div>
     );
   }
