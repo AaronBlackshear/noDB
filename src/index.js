@@ -9,7 +9,3 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 
 
-
-//How is this different from the index.js file I have in my ./server folder???
-
-

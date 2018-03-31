@@ -29,6 +29,16 @@ module.exports = {
 
     editItem(req,res) {
 
+        console.log(req.body)
+        console.log(req.params)
+        const id = req.params.id;
+        const { text } = req.body
+        for(let i=0; i<todoList.length;i++){
+            if(+id === todoList[i].id){
+                todoList[i].text = req.body.text;
+            }
+        }
+        return res.status(200).json( todoList )
     },
 
 
@@ -40,11 +50,10 @@ module.exports = {
         //find the index of the todo in TODOLIST with the same id as the param ( where the ids match )
         //use the index found to splice out a specific todo
         //send back the entire to do list
-        // let elementPos = todoList.map( (e) => { 
-        //     e.id
-        // })
-        
-        // // .indexOf(e);
+
+        //Higher order function that will do the same thing as the vanilla JS version found below...
+        // todoList = todoList.filter(currentElement => currentElement.id !== +req.params.id)
+        // res.status(200).json( todoList)
         for(let i= todoList.length -1; i>=0 ; i--){
             // console.log(id, todoList[i].id)
             if(+id === todoList[i].id){
@@ -58,7 +67,3 @@ module.exports = {
     },
 
 }
-
-
-// todoList = todoList.filter(currentElement => currentElement.id !== +req.params.id)
-// res.status(200).json( todoList)

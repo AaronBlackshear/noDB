@@ -7,22 +7,19 @@ class Morning extends Component {
 
         this.state = {
             inputMorning: '',
-            inputNight: '',
-            inputAnytime: ''
+            inputAnytime: '',
+            inputEdit:""
         }
         //binds go here
     }
-    ////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
 
     handleChangeMorning(e) {
         this.setState({inputMorning: e.target.value})
     }
 
     ////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////
+ 
 
     handleSubmitMorning() {
         this
@@ -30,10 +27,8 @@ class Morning extends Component {
             .updateMorning(this.state.inputMorning)
         // console.log(this.props, this.state)
     }
-
-    ////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////
+    
+    ///////////////////////////////////////////////////////////
 
     render() {
         // console.log(this.props)
@@ -53,9 +48,9 @@ class Morning extends Component {
                             <p className="todoItem">
                                 {e.text}
                             </p>
-
-                            <button>Edit</button>
-                            <button onClick={event => this.props.deleteMorningItem(e.id)}>Delete</button>
+                            <input type="text" onChange={(e) => this.setState({inputEdit:e.target.value})}/>
+                            <button onClick={() => this.props.editItem(e.id , this.state.inputEdit)}>Edit</button>
+                            <button onClick={event => this.props.deleteItem(e.id)}>Delete</button>
 
                         </div>)}
                 </ul>

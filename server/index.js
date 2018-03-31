@@ -18,8 +18,16 @@ app.use(cors());
 //EndPoints
 app.get('/api/getLists', todoCtrl.getList);
 app.post('/api/newItem', todoCtrl.newItem);
-app.put('/api/editItem' , todoCtrl.editItem);
+app.put('/api/editItem/:id' , todoCtrl.editItem);
 app.delete('/api/deleteItem/:id', todoCtrl.deleteItem);
+
+app.get("/api/test", (req,res)=>{
+    console.log("hello")
+
+    res.status(200).send("Hekmfdlkmf world")
+
+
+})
 
 
 app.listen(port, () => console.log(`Listening on: ${ port }`));

@@ -1,18 +1,22 @@
 *{
   font-family: "SF Pro Text";
   font-weight: 600;
+  /* color: #00E676 */
+  background-color: #03A9F4
+
 }
 
 .todoItem {
-  background-color:purple;
-  color: aquamarine
+  /* background-color:#82B1FF; */
+  color:#84FFFF;
 }
 
 .column {
   display:inline-block;
   width:33%;
   height:70vh;
-  background-color: aquamarine;
+  color:#A7FFEB
+  
 }
 
 

@@ -6,9 +6,8 @@ class Anytime extends Component {
         super(props);
 
         this.state = {
-            inputMorning: '',
-            inputNight: '',
-            inputAnytime: ''
+            inputAnytime: '',
+            inputEdit:""
         }
         //binds go here
     }
@@ -54,9 +53,9 @@ class Anytime extends Component {
                             <p className="todoItem">
                                 {e.text}
                             </p>
-
-                            <button>Edit</button>
-                            <button onClick={event => this.props.deleteAnytimeItem(e.id)}>Delete</button>
+                            <input onChange={dog=>this.setState({inputEdit:dog.target.value})} ></input>
+                            <button onClick={() => this.props.editItem(e.id , this.state.inputEdit)}  >Edit</button>
+                            <button onClick={event => this.props.deleteItem(e.id)}>Delete</button>
 
                         </div>)}
                 </ul>

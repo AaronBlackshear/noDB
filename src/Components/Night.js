@@ -6,9 +6,10 @@ class Night extends Component {
         super(props);
 
         this.state = {
-            inputMorning: '',
+            // inputMorning: '',
             inputNight: '',
-            inputAnytime: ''
+            // inputAnytime: '',
+            inputEdit:''
         }
 //binds go here
     }
@@ -32,6 +33,10 @@ class Night extends Component {
     ////////////////////////////////////////////////////////////////////////////////
 
 
+    handleEdit(newEditText){
+        this.setState({inputEdit : newEditText })
+    }
+
 
     render() {
         console.log(this.props)
@@ -52,9 +57,9 @@ class Night extends Component {
                             <p className="todoItem">
                                 {e.text}
                             </p>
-
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <input onChange={(event) => this.handleEdit(event.target.value) }></input>
+                            <button onClick={() => this.props.editItem(e.id , this.state.inputEdit)}>Edit</button>
+                            <button onClick={() => this.props.deleteItem(e.id)}>Delete</button>
 
                         </div>)}
                 </ul>
