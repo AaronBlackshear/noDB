@@ -167,7 +167,6 @@ console.log(this.state);
           updateAnytime={this.updateAnytime}
           editItem= {this.editItem}
           deleteItem={this.deleteItem}/>
-
           <Header />
           <Header />
           <Header />

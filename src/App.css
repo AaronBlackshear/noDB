@@ -18,6 +18,20 @@
   color:#A7FFEB
   
 }
+/* //css for a phone */
+@media only screen and (max-width: 600px) {
+  *{
+  
+    background: red;
+  }
+  }
+/* //tablet */
+  @media only screen and (min-width: 768px)  {
+    *{
+    
+      background: green;
+    }
+    }
 
 
 
